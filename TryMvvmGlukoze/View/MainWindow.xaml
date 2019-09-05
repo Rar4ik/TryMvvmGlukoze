@@ -1,0 +1,23 @@
+﻿<Window x:Class="TryMvvmGlukoze.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TryMvvmGlukoze"
+        mc:Ignorable="d"
+        Title="Рассчёт глюкозы" Height="575" Width="750">
+    <StackPanel>
+        <Menu HorizontalAlignment="Right">
+            <MenuItem FontSize="22" Header="Выход" Click="Button_ClickExit"/>
+        </Menu>
+        <TabControl Name="MainTabControll">
+            <TabItem FontSize="16" Header="Глюкоза">
+                <StackPanel>
+                    <local:CalcDose Margin="5"/>
+                    <Separator/>
+                    <local:CalcCon Margin="5"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>

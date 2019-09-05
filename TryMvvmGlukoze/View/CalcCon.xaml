@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="TryMvvmGlukoze.CalcCon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TryMvvmGlukoze.View_Models"
+             mc:Ignorable="d" Height="233" Width="725">
+    <UserControl.DataContext>
+        <local:CaclConcentrationViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="DockPanel.Dock" Value="Left"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="DockPanel.Dock" Value="Left"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="28"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <TextBox Text="{Binding LesserConAmount, Mode=OneWay}" DockPanel.Dock="Bottom" Margin="15,5,503,5" Width="Auto" IsReadOnly="True"/>
+        <TextBlock DockPanel.Dock="Bottom" Text="V глюкозы &#10;меньшей концентрации:" Margin="15,5,5,5"/>
+        <TextBox Text="{Binding BiggerConAmount, Mode=OneWay}" DockPanel.Dock="Bottom" Margin="15,5,503,5" Width="Auto" IsReadOnly="True"/>
+        <TextBlock DockPanel.Dock="Bottom" Text="V глюкозы &#10;большей концентрации:" Margin="15,5,5,5"/>
+        <TextBlock Text="V общей глюкозы:" VerticalAlignment="Center" Margin="15,5,5,5"/>
+        <TextBox Text="{Binding OveralAmount, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="% Большей глюкозы:" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding BiggerCon, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding LesserCon, UpdateSourceTrigger=PropertyChanged}"/>
+    </DockPanel>
+</UserControl>
