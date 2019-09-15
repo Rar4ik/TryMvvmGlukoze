@@ -34,7 +34,7 @@
         <TextBox Text="{Binding OveralAmount, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="% Большей глюкозы:" VerticalAlignment="Center"/>
         <TextBox Text="{Binding BiggerCon, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>
+        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>        
         <TextBox Text="{Binding LesserCon, UpdateSourceTrigger=PropertyChanged}"/>
     </DockPanel>
 </UserControl>

@@ -10,8 +10,8 @@ namespace TryMvvmGlukoze.View_Models
 {
     class CaclConcentrationViewModel : INotifyPropertyChanged
     {
-        private double _dose;
-        public double Dose
+        private string _dose;
+        public string Dose
         {
             get { return _dose; }
             set
@@ -20,34 +20,34 @@ namespace TryMvvmGlukoze.View_Models
                 _dose = calcDoseViewModel.Dose; OnPropertyChanged("BiggerConAmount");
             }
         }
-        private int _overalAmount;
-        public int OveralAmount
+        private string _overalAmount;
+        public string OveralAmount
         {
             get { return _overalAmount; }
             set { _overalAmount = value; OnPropertyChanged("BiggerConAmount"); }
         }
-        private int _biggerCon;
-        public int BiggerCon
+        private string _biggerCon;
+        public string BiggerCon
         {
             get { return _biggerCon; }
             set { _biggerCon = value; OnPropertyChanged("BiggerConAmount"); }
         }
-        private int _lesserCon;
-        public int LesserCon
+        private string _lesserCon;
+        public string LesserCon
         {
             get { return _lesserCon; }
             set { _lesserCon = value; OnPropertyChanged("BiggerConAmount"); }
         }        
-        public int BiggerConAmount
+        public string BiggerConAmount
         {
             get { CalcConcentrationModel calcConcentrationModel = new CalcConcentrationModel();
-                return calcConcentrationModel.GetBiggerAmount(Dose, LesserCon, BiggerCon, OveralAmount);
+                return calcConcentrationModel.GetBiggerAmount(Dose, LesserCon, BiggerCon, OveralAmount).ToString();
             }
         }
-        public int LesserConAmount
+        public string LesserConAmount
         {
             get { CalcConcentrationModel calcConcentrationModel = new CalcConcentrationModel();
-                return calcConcentrationModel.GetLesserAmount(OveralAmount); }
+                return calcConcentrationModel.GetLesserAmount().ToString(); }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

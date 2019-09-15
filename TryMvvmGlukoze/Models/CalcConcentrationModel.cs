@@ -11,14 +11,17 @@ namespace TryMvvmGlukoze
         private const int coeff = 100;
         private double biggerV = 0;
         private double lesserV = 0;
-        public int GetBiggerAmount(double dose, int lesserCon, int biggerCon, int overallV)
+        private int privateOverallV = 0;
+        public int GetBiggerAmount(string dose, string lesserCon, string biggerCon, string overallV)
         {
-            biggerV = (dose * coeff - lesserCon * overallV) / (biggerCon - lesserCon);
+            privateOverallV = Convert.ToInt32(overallV);
+            biggerV = (Convert.ToDouble(dose) * coeff - Convert.ToInt32(lesserCon) * Convert.ToInt32(overallV)) / (Convert.ToInt32(biggerCon) - Convert.ToInt32(lesserCon));
+            GetLesserAmount();
             return (int)biggerV;
         }
-        public int GetLesserAmount(int overallV)
+        public int GetLesserAmount()
         {
-            lesserV = overallV - biggerV;
+            lesserV = privateOverallV - biggerV;
             return (int)lesserV;
         }
     }

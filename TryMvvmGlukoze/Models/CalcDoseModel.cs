@@ -9,7 +9,7 @@ namespace TryMvvmGlukoze
     class CalcDoseModel
     {
         private const double coeff = 1.44;
-        public double GetDose(double mass, double speed) => speed * (mass / 1000) * coeff;
-        public double GetVVDose(double dose, double enteralno) => dose - enteralno;
+        public double GetDose(string mass, string speed) => Convert.ToDouble(speed) * (Convert.ToDouble(mass) / 1000) * coeff;
+        public double GetVVDose(string dose, string enteralno) => Convert.ToDouble(dose) - Convert.ToDouble(enteralno);
     }
 }

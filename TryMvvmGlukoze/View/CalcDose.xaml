@@ -23,6 +23,7 @@
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="28"/>
         </Style>
+        <converters:MyConverter x:Key="ConvertDot" />
     </UserControl.Resources>
     <DockPanel>
         <TextBox Text="{Binding VVDose, Mode=OneWay}" DockPanel.Dock="Bottom" Margin="15,5,528,5" Width="Auto" IsReadOnly="True"/>
@@ -30,10 +31,10 @@
         <TextBox Text="{Binding Dose, Mode=OneWay}" DockPanel.Dock="Bottom" Margin="15,5,528,5" Width="Auto" IsReadOnly="True"/>
         <TextBlock DockPanel.Dock="Bottom" Text="Доза глюкозы, г/сут. :" Margin="15,5,5,5"/>
         <TextBlock Text="Масса тела, г. : " Margin="15,5,5,5" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding Mass, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <TextBox Text="{Binding Mass, UpdateSourceTrigger=LostFocus}" Margin="5"/>
         <TextBlock Text="Скорость утилизации, &#10;мг/кг/мин. : " Margin="15,5,5,5" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding Speed, UpdateSourceTrigger=LostFocus}" Margin="5"/>
+        <TextBox Text="{Binding Speed, UpdateSourceTrigger=LostFocus, Converter={StaticResource ConvertDot}}" Margin="5"/>
         <TextBlock Text="Кол-во глюкозы &#10;энтерально: " Margin="15,5,0,5" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding Enteralno, UpdateSourceTrigger=LostFocus}" Margin="5" />
+        <TextBox Text="{Binding Enteralno, UpdateSourceTrigger=LostFocus, Converter={StaticResource ConvertDot}}"/>
     </DockPanel>
 </UserControl>

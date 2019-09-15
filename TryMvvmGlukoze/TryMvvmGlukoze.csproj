@@ -87,6 +87,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MyConverter.cs" />
     <Compile Include="View-Models\CaclConcentrationViewModel.cs" />
     <Compile Include="View-Models\CalcDoseViewModel.cs" />
     <Compile Include="View\CalcCon.xaml.cs">
