@@ -20,7 +20,7 @@ namespace TryMvvmGlukoze
         {
             if (value != null && value.ToString().Contains(dot)) return value.ToString().Replace(".", ",");
             else if (value != null) return value.ToString();
-            else return null;            
+            else return null;
         }
     }
 }

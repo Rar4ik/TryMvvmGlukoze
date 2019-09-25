@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TryMvvmGlukoze.View_Models"
              mc:Ignorable="d" Height="233" Width="725">
     <UserControl.DataContext>
-        <local:CaclConcentrationViewModel/>
+        <local:CalcDoseViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
