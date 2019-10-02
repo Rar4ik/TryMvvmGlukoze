@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TryMvvmGlukoze.Models;
 
 namespace TryMvvmGlukoze
 {
@@ -11,14 +12,15 @@ namespace TryMvvmGlukoze
         private const int coeff = 100;
         private double biggerV = 0;
         private double lesserV = 0;
-        public int GetBiggerAmount(double dose, int lesserCon, int biggerCon, int overallV)
+        public int GetBiggerAmount(string lesserCon, string biggerCon, string overallV)
         {
-            biggerV = (dose * coeff - lesserCon * overallV) / (biggerCon - lesserCon);
+            biggerV = (DoseObject.SendDose() * coeff - Convert.ToInt32(lesserCon) * Convert.ToInt32(overallV)) 
+                / (Convert.ToInt32(biggerCon) - Convert.ToInt32(lesserCon));
             return (int)biggerV;
         }
-        public int GetLesserAmount(int overallV)
+        public int GetLesserAmount(string overallV, string biggerV)
         {
-            lesserV = overallV - biggerV;
+            lesserV = Convert.ToInt32(overallV) - Convert.ToInt32(biggerV);
             return (int)lesserV;
         }
     }

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TryMvvmGlukoze.View_Models"
              mc:Ignorable="d" Height="233" Width="725">
     <UserControl.DataContext>
-        <local:CaclConcentrationViewModel/>
+        <local:CalcDoseViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -34,7 +34,7 @@
         <TextBox Text="{Binding OveralAmount, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="% Большей глюкозы:" VerticalAlignment="Center"/>
         <TextBox Text="{Binding BiggerCon, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>
+        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>        
         <TextBox Text="{Binding LesserCon, UpdateSourceTrigger=PropertyChanged}"/>
     </DockPanel>
 </UserControl>
