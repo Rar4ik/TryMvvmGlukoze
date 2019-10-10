@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TryMvvmGlukoze.Models;
 
-namespace TryMvvmGlukoze
+namespace TryMvvmGlukoze.Models
 {
     class CalcConcentrationModel
     {
@@ -16,12 +15,16 @@ namespace TryMvvmGlukoze
         {
             biggerV = (DoseObject.SendDose() * coeff - Convert.ToInt32(lesserCon) * Convert.ToInt32(overallV)) 
                 / (Convert.ToInt32(biggerCon) - Convert.ToInt32(lesserCon));
-            return (int)biggerV;
+                return (int)biggerV;                               
         }
         public int GetLesserAmount(string overallV, string biggerV)
         {
             lesserV = Convert.ToInt32(overallV) - Convert.ToInt32(biggerV);
-            return (int)lesserV;
+            if (CheckNegative.IsNegative(lesserV) == true)
+                return (int)lesserV;
+            else
+                SendMessage.SendMsg();
+            return -1; 
         }
     }
 }

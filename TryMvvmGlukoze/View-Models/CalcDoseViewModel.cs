@@ -4,45 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using TryMvvmGlukoze.Models;
 
 namespace TryMvvmGlukoze.View_Models
 {
-    public class CalcDoseViewModel : INotifyPropertyChanged        
+    public class CalcDoseViewModel : INotifyPropertyChanged, IDataErrorInfo        
     {
+        Validation Validation = new Validation();
         #region 
         /// <summary>
-        /// Расчёт дозы
+        /// Ввод параметров для модели
         /// </summary>
         private string _mass;
         public string Mass
         {
             get { return _mass; }
-            set { _mass = value; OnPropertyChanged("Dose"); }
+            set { if (Validation.CheckLenght(value) == true && Validation.CheckChar(value) == true)
+                    _mass = value;
+                else
+                    _mass = null; 
+                OnPropertyChanged("Dose"); }
         }
         private string _speed;
         public string Speed
         {
             get { return _speed; }
-            set { _speed = value; OnPropertyChanged("Dose"); OnPropertyChanged("VVDose"); }
+            set { if (Validation.CheckLenght(value) == true && Validation.CheckChar(value) == true)
+                    _speed = value;
+                else
+                    _speed = null; OnPropertyChanged("Dose"); OnPropertyChanged("VVDose"); }
         }
         private string _enteralno;
         public string Enteralno
         {
             get { return _enteralno; }
-            set { _enteralno = value; OnPropertyChanged("VVDose"); }
+            set { if (Validation.CheckLenght(value) == true && Validation.CheckChar(value) == true)
+                    _enteralno = value;
+                else
+                    _enteralno = null;  OnPropertyChanged("VVDose"); }
 
         }
-        public string Dose
+        public string Dose  
         {
             get { CalcDoseModel calcDoseModel = new CalcDoseModel();
-                return calcDoseModel.GetDose(Mass, Speed).ToString();
+                if (Mass == null | Speed == null)
+                    return null;
+                else
+                    return calcDoseModel.GetDose(Mass, Speed).ToString("F");
             }
         }
         private string _vvDose;
         public string VVDose
         {
             get { CalcDoseModel calcDoseModel = new CalcDoseModel();
-                return calcDoseModel.GetVVDose(Dose, Enteralno).ToString();
+                if (Dose == null | Enteralno == null)
+                    return null;
+                else
+                    return calcDoseModel.GetVVDose(Dose, Enteralno).ToString();
             }
             set { _vvDose = value; }
         }
@@ -50,45 +68,31 @@ namespace TryMvvmGlukoze.View_Models
 
         #region
         /// <summary>
-        /// Расчёт концентрации
+        /// Валидация данных
         /// </summary>
-        private string _overalAmount;
-        public string OveralAmount
-        {
-            get { return _overalAmount; }
-            set { _overalAmount = value; OnPropertyChanged("BiggerConAmount"); OnPropertyChanged("LesserConAmount"); }
-        }
-        private string _biggerCon;
-        public string BiggerCon
-        {
-            get { return _biggerCon; }
-            set { _biggerCon = value; OnPropertyChanged("BiggerConAmount"); OnPropertyChanged("LesserConAmount"); }
-        }
-        private string _lesserCon;
-        public string LesserCon
-        {
-            get { return _lesserCon; }
-            set { _lesserCon = value; OnPropertyChanged("BiggerConAmount"); OnPropertyChanged("LesserConAmount"); }
-        }
-        private string _biggerConAmount;
-        public string BiggerConAmount
+        public string Error => throw new NotImplementedException();
+        public string this[string columnName]
         {
             get
             {
-                CalcConcentrationModel calcConcentrationModel = new CalcConcentrationModel();
-                if (LesserCon == null | BiggerCon == null | OveralAmount == null)
-                    return null;
-                else
-                    return calcConcentrationModel.GetBiggerAmount(LesserCon, BiggerCon, OveralAmount).ToString();
-            }
-            set { _biggerConAmount = value; }
-        }
-        public string LesserConAmount
-        {
-            get
-            {
-                CalcConcentrationModel calcConcentrationModel = new CalcConcentrationModel();
-                return calcConcentrationModel.GetLesserAmount(OveralAmount, BiggerConAmount).ToString();
+                string msg = null;
+
+                switch (columnName)
+                {
+                    case "Mass":
+                        if (Validation.CheckLenght(Mass) == false)
+                        { msg = "Значение не введено или введено некорректно"; }
+                        break;
+                    case "Speed":
+                        if (Validation.CheckLenght(Speed) == false)
+                        { msg = "Значение не введено или введено некорректно"; }
+                        break;
+                    case "Enteralno":
+                        if(Validation.CheckLenght(Enteralno) == false)
+                        { msg = "Значение не введено или введено некорректно"; }
+                        break;
+                }
+                return msg;
             }
         }
         #endregion

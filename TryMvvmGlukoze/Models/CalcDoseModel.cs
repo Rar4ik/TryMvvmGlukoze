@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TryMvvmGlukoze.Models;
 
-namespace TryMvvmGlukoze
+namespace TryMvvmGlukoze.Models
 {
     class CalcDoseModel
     {
@@ -15,8 +14,11 @@ namespace TryMvvmGlukoze
         public double GetVVDose(string dose, string enteralno)
         {
             _vvDose = Convert.ToDouble(dose) - Convert.ToDouble(enteralno);
-            DoseObject.GetDose(_vvDose);
-            return _vvDose;
+            if (CheckNegative.IsNegative(_vvDose) == true)
+            { DoseObject.GetDose(_vvDose); return _vvDose; }
+            else
+                SendMessage.SendMsg();
+            return -1;
         }
     }
 }

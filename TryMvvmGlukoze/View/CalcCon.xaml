@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TryMvvmGlukoze.View_Models"
              mc:Ignorable="d" Height="233" Width="725">
     <UserControl.DataContext>
-        <local:CalcDoseViewModel/>
+        <local:CaclConcentrationViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -23,6 +23,12 @@
             <Setter Property="TextAlignment" Value="Justify"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="28"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}
+                        , Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <DockPanel>
@@ -31,10 +37,13 @@
         <TextBox Text="{Binding BiggerConAmount, Mode=OneWay}" DockPanel.Dock="Bottom" Margin="15,5,503,5" Width="Auto" IsReadOnly="True"/>
         <TextBlock DockPanel.Dock="Bottom" Text="V глюкозы &#10;большей концентрации:" Margin="15,5,5,5"/>
         <TextBlock Text="V общей глюкозы:" VerticalAlignment="Center" Margin="15,5,5,5"/>
-        <TextBox Text="{Binding OveralAmount, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding OveralAmount, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, 
+            NotifyOnValidationError=True}"/>
         <TextBlock Text="% Большей глюкозы:" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding BiggerCon, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>        
-        <TextBox Text="{Binding LesserCon, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding BiggerCon, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, 
+            NotifyOnValidationError=True}"/>
+        <TextBlock Text="% Меньшей глюкозы:" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding LesserCon, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, 
+            NotifyOnValidationError=True}"/>
     </DockPanel>
 </UserControl>
